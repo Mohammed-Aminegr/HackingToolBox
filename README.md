@@ -9,6 +9,8 @@
 ## Énumération
 ### Windows 
 ### Linux 
+sudo -l
+kernel
 ### Nmap
 ### FTP (File Transfer Protocol)
 ### SMB
