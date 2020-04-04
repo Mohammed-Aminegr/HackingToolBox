@@ -11,6 +11,10 @@
 ### Linux 
 sudo -l
 kernel
+
+We can then list the SUID/SGID binaries available to us by running LinEnum.sh or the following bash command:
+
+```find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID```
 ### Nmap
 ### FTP (File Transfer Protocol)
 ### SMB
