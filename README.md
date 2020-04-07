@@ -172,3 +172,9 @@ evil-winrm -i [adresseIP] -u [USER] -H/-p [HASH/Password]
 ### Hydra
 bruteforce ssh login :  
 `hydra -L user.txt -P /usr/share/wordlists/rockyou.txt RHOST -t 5 ssh -I`
+
+## Host discovery 
+
+for /24 :  
+for i in $(seq 254); do ping 10.13.37.$i -c1 -W1 & done | grep from  
+
